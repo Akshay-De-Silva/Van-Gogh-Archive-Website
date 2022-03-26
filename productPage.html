@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Van Gogh Archive - Souvenirs</title>
+    <link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        var orderCount = 0;
+        var totalCost = 0;
+        var paintingArray = [];
+        var paintingPriceArray = [];
+        var quantityArray = [];
+        var validFirstName;
+        var validLastName;
+        var validEmail;
+
+        function validateInputs(productsForm) {
+            var firstName = productsForm.firstName.value;
+            var lastName = productsForm.lastName.value;
+            var email = productsForm.email.value;
+            var painting = productsForm.paintingChoice.value;
+            var quantity = productsForm.quantity.value;
+            var paintingPrice;
+            var paintingName;
+
+            if (firstName === "" || firstName == null) { //validates first name
+                alert("Please Enter your First Name");
+            } else if (lastName === "" || lastName == null) { //validates last name
+                alert("Please Enter your Last Name");
+            } else if (email === "" || email == null) { //validates email
+                alert("Please Enter your Email Address");
+            } else if (email.indexOf("@") === -1 || email.indexOf(".") === -1) { //check if email is missing a @ or . symbol
+                alert("Your Email does not contain a '@' or '.' symbol");
+            } else if (painting === "" || painting == null) { //validates painting selection
+                alert("Please Choose a Painting to Purchase");
+            } else if (quantity === "-") {
+                alert("Please Select your desired Quantity")
+            } else {
+                if (painting === "drGachet") { //sets price and name of each painting
+                    paintingName = "Dr. Gachet";
+                    paintingPrice = 60;
+                } else if (painting === "starryNight") {
+                    paintingName = "Starry Night Sky";
+                    paintingPrice = 80;
+                } else if (painting === "sunflowers") {
+                    paintingName = "Sunflowers";
+                    paintingPrice = 70;
+                }
+
+                validFirstName = firstName;
+                validLastName = lastName;
+                validEmail = email;
+
+                addToCart(paintingName, quantity, paintingPrice, orderCount);
+                orderCount += 1;
+
+            }
+
+        }
+
+        function addToCart(paintingName, quantity, paintingPrice, orderCount) {
+            paintingArray[orderCount] = paintingName;
+            paintingPriceArray[orderCount] = paintingPrice;
+            quantityArray[orderCount] = quantity;
+
+            if (orderCount < 4) {
+                document.getElementById("productCartValues" + orderCount).innerHTML = paintingArray[orderCount] + " x " + quantityArray[orderCount];
+
+                totalCost += paintingPriceArray[orderCount] * quantityArray[orderCount];
+                document.getElementById("productCartTotalCost").innerHTML = "Total Cost = $" + totalCost;
+            } else {
+                alert("Your Cart is now full. Please proceed to Checkout");
+            }
+        }
+
+        function emptyCart() {
+            document.getElementById("productCartValues0").innerHTML = "<wbr>";
+            document.getElementById("productCartValues1").innerHTML = "<wbr>";
+            document.getElementById("productCartValues2").innerHTML = "<wbr>";
+            document.getElementById("productCartValues3").innerHTML = "<wbr>";
+            document.getElementById("productCartTotalCost").innerHTML = "<wbr>";
+            orderCount = 0;
+            totalCost = 0;
+            paintingArray = [];
+            quantityArray = [];
+            paintingPriceArray = [];
+        }
+
+        function checkout() {
+            if (totalCost === 0) {
+                alert("Cart is currently Empty. Please Add a Painting to the Cart");
+            } else {
+                var productString = "";
+                for (var x = 0; x < paintingArray.length && x < 4; x++) {
+                    productString += paintingArray[x] + " x " + quantityArray[x] + "\n";
+                }
+
+                alert("Invoice Details:" +
+                    "\nName: " + validFirstName + " " + validLastName +
+                    "\nEmail: " + validEmail +
+                    "\n--------------------------\n" + productString +
+                    "\nTotal Cost = $" + totalCost +
+                    "\n\nThank you for shopping at the Van Gogh Archive");
+            }
+        }
+
+    </script>
+</head>
+
+<body class="productBackground">
+    <div id="container">
+        <a id="pageTop"></a>
+        <div id="main">
+            <header>
+                <img class="logo" src="resources/logo.svg" alt="logo">
+
+                <nav>
+                    <ul class="navBar">
+                        <li><a href="mainPage.html">Home</a></li>
+                        <li><a href="gallery.html">Gallery</a></li> 
+                        <li><a href="Quiz.html">Quiz</a></li>
+                        <li><a href="query.html">Inquiries</a></li>
+                        <li><a href="sitemap.html">Site Map</a></li>
+                    </ul>
+                </nav>
+            </header><br>
+
+            <span>
+                <div class="productMainTextTitle">Welcome to the Van Gogh Archives Souvenir Page</div> <br><br>
+                <div class="productText">Here you can purchase three professionally designed replicas of Van Goghs best work including:</div><br>
+
+                <div class="productTextSubTitle">Portrait of Dr. Gachet</div> <br>
+                <div class="productText">One of the most revered paintings by Van Gogh.
+                    It depicts Dr. Paul Gachet, a homeopathic doctor and artist with whom van Gogh resided following a
+                    spell in an asylum at Saint-Rémy-de-Provence. Gachet took care of Van Gogh during the final months of his life</div> <br>
+
+                <div class="productTextSubTitle">Starry Night Sky</div> <br>
+                <div class="productText">Starry Night is an oil on canvas painted in June 1889,
+                    it depicts the view from the east-facing window of Van Gogh's asylum room at Saint-Rémy-de-Provence,
+                    just before sunrise, with the addition of an imaginary village.</div> <br>
+
+                <div class="productTextSubTitle">Sunflowers</div> <br>
+                <div class="productText">Sunflowers is one of the most popular and well known paintings by Van Gogh.
+                    It was also the picture that Van Gogh was most proud of. It was painted during a rare period of excited optimism,
+                    while Van Gogh awaited the arrival of his hero, the avant-garde painter Paul Gauguin.</div>
+            </span>
+
+            <div class="productPaintingBox">
+                <div class="productPaintingGap"><wbr></div>
+
+                <div class="productPainting">
+                    <div class="productImageBorder"><img src="resources/thumbnails/productDrGachet.jpg" alt="Dr.Gachet"></div>
+                    <div class="productPaintingNamePrice">
+                        <p>Portrait of Dr. Gachet</p>
+                        <p>$60</p>
+                    </div>
+                </div>
+
+
+                <div class="productPainting">
+                    <div class="productImageBorder"><img src="resources/thumbnails/productStarryNight.jpg" alt="StarryNight"></div>
+                    <div class="productPaintingNamePrice">
+                        <p>Starry Night Sky</p>
+                        <p>$80</p>
+                    </div>
+                </div>
+
+
+                <div class="productPainting">
+                    <div class="productImageBorder"><img src="resources/thumbnails/productSunflower.jpg" alt="Sunflowers"></div>
+                    <div class="productPaintingNamePrice">
+                        <p>Sunflowers</p>
+                        <p>$70</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="productFormBox">
+
+                <div id="productFormGapOne"><wbr></div>
+
+                <form name="productForm">
+                    <div class="productFieldset">
+                        <fieldset id="productFieldset">
+                            <legend id="productLegend">Place Order</legend>
+                            <div class="productLabel">
+                                <label for="firstName">First Name:</label>
+                            </div>
+                            <div class="productInput">
+                                <input type="text" name="firstName" id="firstName" maxlength= "15" class="productInputBox" placeholder="Enter First Name" size="25"><br><br>
+                            </div>
+
+                            <div class="productLabel">
+                                <label for="lastName">Last Name:</label>
+                            </div>
+                            <div class="productInput">
+                                <input type="text" id="lastName" name="lastName" maxlength= "40" class="productInputBox" placeholder="Enter Last Name" size="25"><br><br>
+                            </div>
+
+                            <div class="productLabel">
+                                <label for="email">Email Address:</label>
+                            </div>
+                            <div class="productInput">
+                                <input type="text" id="email" name="email" maxlength= "40" class="productInputBox" placeholder="Enter Email Address" size="30"><br><br>
+                            </div>
+
+                            <div class="productLabel">
+                                <label for="paintingChoice">Select Painting:</label>
+                            </div>
+                            <div class="productInput">
+                                <select name="paintingChoice" id="paintingChoice" class="productInputBox" size="3">
+                                    <option value="drGachet">Portrait of Dr. Gachet</option>
+                                    <option value="starryNight">Starry Night Sky</option>
+                                    <option value="sunflowers">Sunflowers</option>
+                                </select><br><br>
+                            </div>
+
+                            <div class="productLabel">
+                                <label for="quantity">Quantity:</label>
+                            </div>
+                            <div class="productInput">
+                                <select name="quantity" id="quantity" class="productInputBox">
+                                    <option value="-">-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select><br><br>
+                            </div>
+
+                            <input type="reset" name="productClearBtn" id="productClearBtn" value="Clear">
+                            <input type="button" name="productAddCartBtn" id="productAddCartBtn" value="Add to Cart" onclick="validateInputs(this.form)">
+
+                        </fieldset>
+
+                    </div>
+
+                </form>
+
+                <div id="productFormGapTwo"><wbr></div>
+
+                <div class="productCart">
+                    <div id="productCartTitle">Your Cart</div>
+                    <div id="productCartValues0" class="productCartItems"><wbr></div>
+                    <div id="productCartValues1" class="productCartItems"><wbr></div>
+                    <div id="productCartValues2" class="productCartItems"><wbr></div>
+                    <div id="productCartValues3" class="productCartItems"><wbr></div>
+                    <div id="productCartTotalCost" class="productCartCost"><wbr></div>
+
+                    <input type="button" name="productClearCartBtn" id="productClearCartBtn" value="Empty Cart" onclick="emptyCart()">
+                    <input type="button" name="productCheckoutBtn" id="productCheckoutBtn" value="Checkout" onclick="checkout()">
+
+                </div>
+
+                <div id="productFormGapThree"><wbr></div>
+
+                <a href="page editors/student1PageEditor.html"><button id="productPageEditorBtn" class="productPageEditorBtn">Page Editor</button></a>
+
+            </div>
+
+            <a href="#pageTop"><button id="pageTopBtn" class="productTopBtn"><img src="resources/upArrow.svg" alt="UpArrow"></button></a>
+
+        </div>
+    </div><br>
+
+    <footer>
+
+        <div id="Footer_about">
+            <a href="studentDetails.html"> About Us </a>
+        </div>
+
+    </footer>
+</body>
+
+</html>

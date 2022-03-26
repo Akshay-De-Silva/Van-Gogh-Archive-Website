@@ -1,0 +1,228 @@
+<!doctype html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Van Gogh Archive - Contact Us</title>
+			<link rel="stylesheet" href="style.css">
+			<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
+			<script>
+				
+				function Disappear() {
+					document.getElementById("query_clear").style.visibility='hidden' ;
+					document.getElementById("query_outClear").style.visibility ='visible';
+				}
+				function Appear() {
+					document.getElementById("query_clear").style.visibility ='visible' ;
+					document.getElementById("query_outClear").style.visibility ='hidden' ;
+				}
+				function buttonFunction(){
+					document.getElementById("buttonAppear").innerHTML = '<button class="query_specialButton" type="submit" id="query_send" form = "form" >Send</button>';
+					}
+				function buttonFunctionTwo(){
+					document.getElementById("buttonAppearTwo").innerHTML = '<button class="query_specialButton" type="button" onclick="Appear()">Edit</button>';
+					}
+				function errorCheck(){
+					let messages = [] ;
+					let details = [] ;
+					var result=document.form.name.value;
+					if(result=="" || result== null ){
+						messages.push("Please enter your name") ;
+					}	else { 
+						details.push(result) ;
+					}
+					
+					result=document.form.email.value;
+					if(result.includes('@')==false){
+						messages.push("Please enter a valid e-mail address") ;
+					}	else { 
+						details.push(result) ;
+					}
+					
+					result=document.form.mobile.value;
+					if(result=="" || result== null || Number.isInteger(+result) ==false ){
+						messages.push("Please a valid mobile number") ;
+						
+					}	else { 
+						details.push(result) ;
+					}			
+					if (messages.length > 0){
+						alert(messages.join(' ,'));
+						
+					}	else { 
+						var selected=document.querySelector('select').value;
+						details.push(selected) ;
+						
+						result=document.form.notes.value;
+						details.push(result) ;
+					
+						var message_1 = "Your Inquiry is ready!";
+						var message_2 = "If there's anything you would like to add, feel free to do so" ;
+						var message_3 = "Name : " ;
+						var message_4 = "E-mail : " ;
+						var message_5 = "Mobile Number : " ;
+						var message_6 = "Nature of Inquiry : " ;
+						var message_7 = "Additional Notes : " ;
+						var buttonEdit = "Confirm Edit" ;
+						
+						var tag = document.getElementById("outputHeading") ;
+							tag.innerHTML = message_1 ;
+							
+							tag = document.getElementById("outputDesc") ;
+							tag.innerHTML = message_2 ;
+							
+							tag = document.getElementById("line_1") ;
+							message_3 = message_3.concat(details[0]) ;
+							tag.innerHTML = message_3 ;
+							
+							tag = document.getElementById("line_2") ;
+							message_4 = message_4.concat(details[1]) ;
+							tag.innerHTML = message_4 ;
+							
+							tag = document.getElementById("line_3") ;
+							message_5 = message_5.concat(details[2]) ;
+							tag.innerHTML = message_5 ;
+							
+							tag = document.getElementById("line_4") ;
+							message_6 = message_6.concat(details[3]) ;
+							tag.innerHTML = message_6 ;
+							
+							tag = document.getElementById("line_5") ;
+							message_7 = message_7.concat(details[4]) ;
+							tag.innerHTML = message_7 ;
+							
+							tag = document.getElementById("View_Edit") ;
+							tag.innerHTML = buttonEdit ;
+							
+							Disappear();
+							buttonFunction();
+							buttonFunctionTwo();
+							
+					}
+				}
+			</script>
+		</head>
+		
+		<body class="query_background">
+			<div id="container">
+				<a id="pageTop"></a>
+				<div id="main">
+					<header>
+						<img class="logo" src="resources/logo.svg" alt="logo">
+				
+						<nav>
+							<ul class="navBar">
+								<li><a href = "mainPage.html">Home</a></li>
+								<li><a href = "gallery.html" >Gallery</a></li>
+								<li><a href = "productPage.html" >Souvenirs</a></li>
+								<li><a href = "Quiz.html" >Quiz</a></li>
+								<li><a href = "sitemap.html" >Sitemap</a></li>
+							</ul>
+						</nav>
+					</header>
+					
+					<div class="query_container" >
+						<div id="query_clear">
+					
+							<form id="form" name="form" action="mailto:victor.20200295@iit.ac.lk" method="post">
+							<fieldset id="query_fieldset">
+						
+								<div class="query_box">
+									<h1>Contact Us</h1>
+									<br>
+									<div class="query_textBox">
+										<input name="name" type="text" size="20" maxlength= "30" placeholder="Your Name">
+									</div>
+									<br>
+									
+									<div class="query_textBox">
+										<input name="email" type="text" size="20" maxlength= "30" placeholder="Your Email">
+									</div>
+									<br>
+								
+									<div class="query_textBox">
+										<input name="mobile" type="text" size="20" maxlength= "11" placeholder="Mobile Number">
+									</div>
+									<br>
+									
+									<div id="query_selectBox">
+										<label class="queryAlignment">Nature of Inquiry</label>
+										<br><br>
+											<select name="inquiryType">
+												<option value="Purchasing a Souvenir">Purchasing a Souvenir</option>
+												<option value="Report a Problem">Report a Problem</option>
+												<option value="Using an Image">Using an Image</option>
+												<option value="My Inquiry is not listed">My Inquiry is not listed</option>
+											</select>
+									</div>
+									<br>
+									
+									<div class="query_textArea">
+										<textarea name="notes" rows="6" cols="20" placeholder="Additional Notes" maxlength="150"></textarea>
+									</div>
+									<br>
+									<br>
+									<div>
+										<button id="View_Edit" type="button" class="query_button" onclick="errorCheck()">View</button>
+									</div>
+									<br>
+								</div>
+						</fieldset>	
+						</form>
+						</div>
+					</div>
+					
+					<div class="query_outputBox">
+						<div id="query_outClear">
+						
+						<div class="query_outputContainer">
+							<p id="outputHeading"> </p>
+							<br>
+							<p id="outputDesc"> </p>
+							<br>
+							<div id="outputValues">
+								<p id="line_1"> </p>
+								<p id="line_2"> </p>
+								<p id="line_3"> </p>
+								<p id="line_4"> </p>
+								<p id="line_5"> </p>
+								
+								<br>
+								<ul class="query_specialButtons">
+									<li><div id="buttonAppearTwo"></div></li>
+									<li><div id="buttonAppear"></div></li>
+								</ul>
+							
+							</div>
+						</div>
+						</div>
+					</div>
+					
+					<div class="query_faqBox">
+						<ul>
+							<li><h2>Frequently Asked Questions</h2></li>
+							<li><p><b>Is Van Gogh's work copyrighted?</b></p><p>No,Van Gogh's work is public domain</p></li>
+							<li><p><b>How do i purchase an image?</b></p><p>Souvenirs can be purchased on the souvenirs page</p></li>
+							<li><p><b>When can i expect my replica to be delivered?</b></p><p>Around never</p></li>
+							<li><p><b>I want a site map of this website for reasons..</b></p><p>You're in luck! a tailored site map is available on the site map page!</p></li>
+							<li><p><b>What is The Van Gogh Archive?</b></p><p>The Van Gogh Archive was made by aspiring Software Engineers and Computer Scientists
+							to tribute Vincent Van Gogh whilst mastering their craft</p></li>
+							<li><p><b>I believe i know everything about Vincent Van Gogh</b></p><p>You can test your knowledge on the Quiz page!</p></li>
+							<li><p><b>Is this website real?</p></b><p>No, it's an assignment</p></li>
+						</ul>
+					</div>
+					
+				</div>
+			
+			<a href="#pageTop"><button id="pageTopBtn" class="TopBtn"><img src="resources/upArrow.svg" alt="UpArrow"></button></a>
+			</div>
+			<br>
+			<br>
+			<footer>
+			
+			<div id="Footer_about">
+			<a href = "#"> About Us </a>
+			</div>
+			
+			</footer>
+			
+		</body>

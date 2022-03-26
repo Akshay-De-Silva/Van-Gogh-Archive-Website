@@ -1,0 +1,159 @@
+<html>
+<head>
+	<title>Gallery</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="container"><!-- CONTAINER-->
+<a id="pageTop"></a>
+<!--HEADER -->
+	<div id="container">
+				<div id="main">
+					<header>
+						<img class="logo" src="resources/logo.svg" alt="logo">
+						<!-- Menu contains a horizontal list for everyones individual pages-->
+						
+							<nav>
+								<ul class="navBar">
+									<li><a href = "mainPage.html">Home</a></li>
+									<li><a href = "productPage.html" >Souvenirs</a></li>
+									<li><a href = "Quiz.html" >Quiz</a></li>
+									<li><a href = "query.html"> Inquiries </a></li>
+									<li><a href = "sitemap.html" >Site Map</a></li>
+								</ul>
+							</nav>
+					</header>
+	<div class="gallery_bodyFont">
+	<!--Heading-->
+
+	<h1 id="gallery_h1">Famous Paintings by Van Gogh</h1>
+
+	<!--Quote-->
+	
+	
+	<p><b>“I put my heart and soul into my work,and I have lost my mind in the process.”</b></p>
+    
+	<p><b>  -Vincent Willem van Gogh-</b></p>
+
+	<!--select element for text color-->
+	<form>Change the text color:
+            <select name="backGround" size="1" onChange="updateTextColour(this.value)">
+                <option value="003d99">Blue</option>
+                <option value="FF0400">Red</option>
+                <option value="008000">Green</option>
+                <option value="997300">Brown</option>
+                <option value="6600ff">Purple</option>
+                <option value="000000" selected>Black</option>
+            </select>
+        </form>
+
+    <!--select element for background color-->
+	<form action="" name="themes" method="post">Change background color:
+            <select name ="colors"  onchange="changeColor(this)">
+                <option value="cc99ff">Purple</option>
+                <option value="99b3ff">Blue</option>
+                <option value="cccc00">Yellow</option>
+                <option value="00b36b">Green</option>
+                <option value="cc6699">Pink</option>
+                <option value="FFFFFF" selected="select" >White</option>
+            </select>
+        </form>
+  
+
+
+
+
+	<!--image gallery-->
+    <!-- The grid: three columns -->
+<div class="row">
+  <div class="column">
+    <img src="resources/thumbnails/the-starry-night-over-the-rhone.jpg" alt="The Starry night over the Rhone(1888)" name = "The Starry night over the Rhone(1888) was painted at a spot on the banks of river which was only a minute or twos walk from the The Yellow House on the Place Lamartine which Van Gogh was renting during his vacation at Rhone." onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="resources/thumbnails/cafe-terrace-at-night.jpg" alt="Cafe terrace at night(1888)" name = "Cafe terrace at night(1888) - This colorful painting is a relaxing view from someone enjoying the cafe surrounding."  onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="resources/thumbnails/landscape-with-snow.jpg" alt="Landscape with snow(1888)" name =  "Landscape with snow(1888) - Van Gogh gained inspiration for this painting during his visit to Arles in the last few days of Winter season.This was his first painting in Arles."  onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="resources/thumbnails/enclosed-field-with-ploughman.jpg" alt="Enclosed field with ploughman(1889)"  name = "Enclosed field with ploughman(1889) - This painting was an inspiration from Millet.He has recreated the wheat field depicted here in several of his paintings."  onclick="myFunction(this);">
+  </div>
+  <div class="column">
+	<img src="resources/thumbnails/landscape-with-pollard-birches.jpg" alt="Landscape with Pollard birches(1889)"  name = "Landscape with Pollard birches(1889) - Van Gogh often used trees as an inspiration.He was very keen on adding details of the tree structures, specially on each gnarled,knotty deformation seen on stumps."  onclick="myFunction(this);">
+  </div>
+  
+  <div class="column">
+
+  <img src="resources/thumbnails/houses-in-auvers.jpg" alt="Houses in Auvers(1890)" name = "Houses in Auvers(1890) -  The shabby street of Auvers in traditional France is painted here,adding texture to the houses and buildings huddled together with uneven roofs overlooking the shabby neighborhood." onclick="myFunction(this);">
+  </div>
+
+<!--Page editor-->
+      <a href="page editors/student4PageEditor.html">
+      <button class="button button1" >Page editor </button></a>
+
+
+
+
+</div>
+
+
+    
+<!-- The expanding image container -->
+<div class="container">
+<!-- Close the image -->
+<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+<!-- Expanded image -->
+<img id="expandedImg" width="50%"  >
+
+<!-- Image text -->
+<div id="imgtext"></div>
+
+</div>
+
+<script>
+	function myFunction(imgs) {
+var expandImg = document.getElementById("expandedImg");
+var imgText = document.getElementById("imgtext");
+expandImg.src = imgs.src;
+var imgDesc = imgs.name;
+imgText.innerHTML = imgDesc;
+expandImg.parentElement.style.display = "block";
+    }
+
+    function updateTextColour(value) {
+                document.body.style.color = '#' + value;
+            }
+    
+
+    function changeColor(el) {
+    	document.body.style.backgroundColor = el.value;
+    }
+
+
+
+</script>
+<!--page top-->
+<div id='pageTop'>
+<a href="#pageTop"><button id="pageTopBtn" class="TopBtn"><img src="resources/upArrow.svg" alt="UpArrow" s></button></a>
+</div>
+
+	  </div>
+      </div>
+      </div>
+
+      
+</div>
+<!--footer-->
+
+					<footer>
+					
+					<div id="Footer_about">
+					<a href = "studentDetails.html"> About Us </a>
+					</div>
+					
+					</footer>
+
+</body>
+</html>
