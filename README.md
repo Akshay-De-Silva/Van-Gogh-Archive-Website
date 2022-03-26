@@ -7,18 +7,18 @@ This project was done in collaberation with 3 other members their contribution i
 
 1) Akshay De Silva (Team Lead): 
 - Developed presentationPage.html
-- Developed productPage.html <br >
+- Developed productPage.html <br ><br >
  
 2) Demetre De Alwis:            
 - Developed mainPage.html 
-- Developed query.html <br >
+- Developed query.html <br ><br >
 
 3) Buhushika Kumarage:          
 - Developed gallery.html 
-- Developed sitemap.html <br >
+- Developed sitemap.html <br ><br >
 
 4) Piyumaka Ubesiriwardene:     
 - Developed quiz.html 
-- Developed studentDetails.html <br >
+- Developed studentDetails.html <br ><br >
 
 style.css contains all css and was developed by all team members
